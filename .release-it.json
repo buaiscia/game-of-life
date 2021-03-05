@@ -6,7 +6,8 @@
       "tagName": "${version}",
       "tagAnnotation": "${version}",
       "push": true,
-      "requireCommits": true
+      "requireCommits": true,
+      "changelog": "npx auto-changelog --stdout --commit-limit false"
     },
     "github": {
       "release": true
