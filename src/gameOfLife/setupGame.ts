@@ -1,6 +1,6 @@
 import { Coordinates } from './types';
 
-export default class InitGame {
+export default class SetupGame {
     private coordinates: Coordinates[];
     private rows: number
     private columns: number;
