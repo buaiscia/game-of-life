@@ -7,23 +7,26 @@ export default class GameOfLife {
         this.grid = grid;
     }
 
-    public run(): void {
-        this.updateLivingCellsOnGrid();
+    public run(): number[][] {
+        const cellsAfterGeneration = this.updateLivingCellsOnGrid();
+        return cellsAfterGeneration;
     }
 
-    private updateLivingCellsOnGrid(): void {
+    private updateLivingCellsOnGrid(): number[][] {
         let aliveOrDead = 0;
+        const updatedGrid = this.grid;
         console.log('start');
         console.log(this.grid);
 
         for (let row = 0; row < this.grid.length; row++) {
             for (let col = 0; col < this.grid.length; col++) {
                 aliveOrDead = this.cellState(this.grid, row, col);
-                this.grid[row][col] = aliveOrDead;
+                updatedGrid[row][col] = aliveOrDead;
             }
         }
         console.log('done');
-        console.log(this.grid);
+        console.log(updatedGrid);
+        return updatedGrid;
     }
 
     private cellState(grid: number[][], row: number, col: number): number {
@@ -47,14 +50,14 @@ export default class GameOfLife {
     private checkNeighbors(grid: number[][], row: number, col: number): number {
         const { top, topRight, right, bottomRight, bottom, bottomLeft, left, topLeft } = this.positions(grid, row, col);
         let aliveCount = 0;
-        aliveCount += this.checkNeighborCell(top);
-        aliveCount += this.checkNeighborCell(topRight);
-        aliveCount += this.checkNeighborCell(right);
-        aliveCount += this.checkNeighborCell(bottomRight);
-        aliveCount += this.checkNeighborCell(bottom);
-        aliveCount += this.checkNeighborCell(bottomLeft);
-        aliveCount += this.checkNeighborCell(left);
-        aliveCount += this.checkNeighborCell(topLeft);
+        aliveCount += this.isNeighborCellAlive(top);
+        aliveCount += this.isNeighborCellAlive(topRight);
+        aliveCount += this.isNeighborCellAlive(right);
+        aliveCount += this.isNeighborCellAlive(bottomRight);
+        aliveCount += this.isNeighborCellAlive(bottom);
+        aliveCount += this.isNeighborCellAlive(bottomLeft);
+        aliveCount += this.isNeighborCellAlive(left);
+        aliveCount += this.isNeighborCellAlive(topLeft);
 
         return aliveCount;
     }
@@ -73,7 +76,7 @@ export default class GameOfLife {
         return position;
     }
 
-    private checkNeighborCell(value): number {
+    private isNeighborCellAlive(value): number {
         return value;
     }
 }
