@@ -1,5 +1,5 @@
 
-import Life from './life';
+import GameOfLife from './gameOfLife';
 
 const grid = new Array(3);
 
@@ -15,7 +15,7 @@ grid[1][1] = living;
 grid[1][2] = living;
 grid[2][1] = living;
 
-const life = new Life(grid);
+const gameOfLife = new GameOfLife(grid);
 
-life.life();
+gameOfLife.run();
 
