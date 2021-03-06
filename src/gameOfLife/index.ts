@@ -1,9 +1,9 @@
 import { Positions } from './types';
 
 export default class GameOfLife {
-    private grid: Array<number>[]
+    private grid: number[][]
 
-    constructor(grid: Array<number>[]) {
+    constructor(grid: number[][]) {
         this.grid = grid;
     }
 
@@ -28,6 +28,7 @@ export default class GameOfLife {
 
     private cellState(grid: number[][], row: number, col: number): number {
         const aliveCount = this.checkNeighbors(grid, row, col);
+
         if (grid[row][col]) {
             if (aliveCount < 2 || aliveCount > 3) {
                 return 0;

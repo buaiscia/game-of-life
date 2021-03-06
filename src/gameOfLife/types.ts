@@ -1,3 +1,5 @@
+
+export type Coordinates = [number, number]
 export interface Positions {
     top: number;
     topRight: number;
