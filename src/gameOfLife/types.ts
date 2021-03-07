@@ -10,3 +10,8 @@ export interface Positions {
     left: number;
     topLeft: number
 }
+
+export interface Position {
+    row: number;
+    col: number;
+}
