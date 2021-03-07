@@ -36,12 +36,12 @@ export default class SetupGame {
     private checkGrid(coordinate: number, grid: number[][]): void {
         for (let row = 0; row < this.rows; row++) {
             for (let col = 0; col < this.columns; col++) {
-                this.fillGrid(coordinate, grid, { row, col });
+                this.fillGrid(coordinate, grid, row, col);
             }
         }
     }
 
-    private fillGrid(coord: number, grid: number[][], { row, col }): void {
+    private fillGrid(coord: number, grid: number[][], row: number, col: number): void {
         if (row === this.coordinates[coord][0] && col === this.coordinates[coord][1]) {
             grid[row][col] = 1;
         }

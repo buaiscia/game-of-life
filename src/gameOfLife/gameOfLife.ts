@@ -76,7 +76,7 @@ export default class GameOfLife {
         return position;
     }
 
-    private isNeighborCellAlive(value): number {
+    private isNeighborCellAlive(value: number): number {
         return value;
     }
 }
