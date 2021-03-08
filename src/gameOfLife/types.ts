@@ -15,3 +15,10 @@ export interface Position {
     row: number;
     col: number;
 }
+
+export interface GridFormat {
+    rows: number;
+    columns: number;
+}
+
+export type Grid = number[][]
