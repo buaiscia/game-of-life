@@ -11,7 +11,8 @@
     "moduleResolution": "node",
     "outDir": "./lib/",
     "rootDir": ".",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strict": false
   },
   "include": ["src"],
   "exclude": ["**/*.test.ts"]
