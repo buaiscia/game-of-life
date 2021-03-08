@@ -1,21 +1,20 @@
-import { Positions } from './types';
+import { Positions, Grid } from './types';
 
 export default class GameOfLife {
-    private grid: number[][]
+    private grid: Grid
 
-    constructor(grid: number[][]) {
+    constructor(grid: Grid) {
         this.grid = grid;
     }
 
-    public run(): number[][] {
+    public run(): Grid {
         const cellsAfterGeneration = this.updateLivingCellsOnGrid();
         return cellsAfterGeneration;
     }
 
-    private updateLivingCellsOnGrid(): number[][] {
+    private updateLivingCellsOnGrid(): Grid {
         let aliveOrDead = 0;
         const updatedGrid = this.grid;
-        console.log('start');
 
         for (let row = 0; row < this.grid.length; row++) {
             for (let col = 0; col < this.grid.length; col++) {
@@ -23,30 +22,22 @@ export default class GameOfLife {
                 updatedGrid[row][col] = aliveOrDead;
             }
         }
-        console.log('done');
         return updatedGrid;
     }
 
-    private cellState(grid: number[][], row: number, col: number): number {
+    private cellState(grid: Grid, row: number, col: number): number {
         const aliveCount = this.checkNeighbors(grid, row, col);
 
-        //TODO refactor
-        if (grid[row][col]) {
-            if (aliveCount < 2 || aliveCount > 3) {
-                return 0;
-            }
+        if (grid[row][col] && (aliveCount >= 2 && aliveCount <= 3)) {
             return 1;
         }
-        else {
-            if (aliveCount === 3) {
-                return 1;
-            }
-
-            return 0;
+        if (!grid[row][col] && aliveCount === 3) {
+            return 1;
         }
+        return 0;
     }
 
-    private checkNeighbors(grid: number[][], row: number, col: number): number {
+    private checkNeighbors(grid: Grid, row: number, col: number): number {
         const { top, topRight, right, bottomRight, bottom, bottomLeft, left, topLeft } = this.positions(grid, row, col);
         let aliveCount = 0;
         aliveCount += this.isNeighborCellAlive(top);
@@ -61,7 +52,7 @@ export default class GameOfLife {
         return aliveCount;
     }
 
-    private positions(grid: number[][], row: number, col: number): Positions {
+    private positions(grid: Grid, row: number, col: number): Positions {
         const top = row && grid[row - 1][col];
         const topRight = row !== 0 && col < grid.length - 1 && grid[row - 1][col + 1];
         const right = col < grid.length - 1 && grid[row][col + 1];

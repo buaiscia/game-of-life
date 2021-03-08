@@ -1,17 +1,17 @@
-import { Coordinates, Position } from './types';
+import { Coordinates, Position, Grid, GridFormat } from './types';
 
 export default class SetupGame {
     private coordinates: Coordinates[];
     private rows: number
     private columns: number;
 
-    constructor(coordinates: Coordinates[]) {
+    constructor(coordinates: Coordinates[], grid: GridFormat) {
         this.coordinates = coordinates;
-        this.rows = 5;
-        this.columns = 5;
+        this.rows = grid.rows;
+        this.columns = grid.columns;
     }
 
-    public init(): number[][] {
+    public init(): Grid {
         try {
             const grid = this.initArray();
             this.fillArrayWithInput(grid);
@@ -21,7 +21,7 @@ export default class SetupGame {
         }
     }
 
-    private initArray(): number[][] {
+    private initArray(): Grid {
         const grid = new Array(this.rows);
 
         for (let i = 0; i < grid.length; i++) {
@@ -31,26 +31,13 @@ export default class SetupGame {
         return grid;
     }
 
-    private fillArrayWithInput(grid: number[][]): void {
-        try {
-            for (let coordinate = 0; coordinate < this.coordinates.length; coordinate++) {
-                // console.log(this.coordinates[coordinate]);
-
-                // // eslint-disable-next-line max-depth
-                // if (this.coordinates[coordinate][0] > this.rows || this.coordinates[coordinate][1] > this.columns) {
-                //     this.coordinates.splice(coordinate, 1);
-                //     // throw new Error(`Set of coordinate is bigger than max ${this.rows} or max ${this.columns}`);
-                //     continue;
-                // }
-
-                this.checkGrid(coordinate, grid);
-            }
-        } catch (error) {
-            throw new Error(error.message);
+    private fillArrayWithInput(grid: Grid): void {
+        for (let coordinate = 0; coordinate < this.coordinates.length; coordinate++) {
+            this.checkGrid(coordinate, grid);
         }
     }
 
-    private checkGrid(coordinate: number, grid: number[][]): void {
+    private checkGrid(coordinate: number, grid: Grid): void {
         for (let row = 0; row < this.rows; row++) {
             for (let col = 0; col < this.columns; col++) {
                 this.fillGrid(coordinate, grid, { row, col });
@@ -58,7 +45,7 @@ export default class SetupGame {
         }
     }
 
-    private fillGrid(coord: number, grid: number[][], position: Position): void {
+    private fillGrid(coord: number, grid: Grid, position: Position): void {
         const { row, col } = position;
         if (row === this.coordinates[coord][0] && col === this.coordinates[coord][1]) {
             grid[row][col] = 1;
