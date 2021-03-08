@@ -10,7 +10,9 @@
     "declaration": true,
     "moduleResolution": "node",
     "outDir": "./lib/",
-    "rootDir": "."
+    "rootDir": ".",
+    "esModuleInterop": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.test.ts"]
 }
