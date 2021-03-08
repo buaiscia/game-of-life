@@ -16,7 +16,6 @@ export default class GameOfLife {
         let aliveOrDead = 0;
         const updatedGrid = this.grid;
         console.log('start');
-        console.log(this.grid);
 
         for (let row = 0; row < this.grid.length; row++) {
             for (let col = 0; col < this.grid.length; col++) {
@@ -25,13 +24,13 @@ export default class GameOfLife {
             }
         }
         console.log('done');
-        console.log(updatedGrid);
         return updatedGrid;
     }
 
     private cellState(grid: number[][], row: number, col: number): number {
         const aliveCount = this.checkNeighbors(grid, row, col);
 
+        //TODO refactor
         if (grid[row][col]) {
             if (aliveCount < 2 || aliveCount > 3) {
                 return 0;
