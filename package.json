@@ -7,15 +7,14 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node -r esm ./test.js",
-    "build": "tsc",
-    "build-prod": "webpack",
+    "build": "lint && tsc",
+    "build-prod": "lint && webpack",
     "lint": "eslint .",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "prepare": "husky install",
-    "release": "npx release-it",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
-  },
+    "release": "npx release-it"
+    },
   "engines": {
     "node": "14.16.0"
   },
