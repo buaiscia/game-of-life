@@ -10,6 +10,10 @@ export const init = (coordinates: Coordinates[] = initCoordinates, grid: GridFor
         throw new Error('Wrong format of coordinates');
     }
 
+    if (!grid || !grid.rows || !grid.columns) {
+        throw new Error('Missing rows or columns input number');
+    }
+
     const setupGame = new SetupGame(coordinates, grid);
     const createdGrid = setupGame.init();
 

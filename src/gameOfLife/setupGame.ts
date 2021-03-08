@@ -22,9 +22,6 @@ export default class SetupGame {
     }
 
     private initArray(): Grid {
-        if (!this.rows || !this.columns) {
-            throw new Error('Missing rows or columns input number');
-        }
         const grid = new Array(this.rows);
 
         for (let i = 0; i < grid.length; i++) {
