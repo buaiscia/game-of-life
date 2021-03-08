@@ -1,4 +1,5 @@
 export type Coordinates = [number, number]
+export type Grid = number[][]
 
 export interface Positions {
     top: number;
@@ -21,4 +22,3 @@ export interface GridFormat {
     columns: number;
 }
 
-export type Grid = number[][]
